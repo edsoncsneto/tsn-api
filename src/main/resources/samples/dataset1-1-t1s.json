@@ -1,0 +1,644 @@
+{
+  "networkCase": "1000BASE-T1S",
+  "datasetName": "1-1",
+  "description": "Access 2018 Lux",
+  "executionConfig": {
+    "generateTASWindowsExcelSheet": "NO",
+    "generateTASWindowsCharts": "NO",
+    "generateNCCurvesCharts": "NO",
+    "generatePortGuaranteedWinFiles": "NO",
+    "prioritizingOrder": "REVERSE__LOWER_VALUE_HIGHER_PRIORITY",
+    "validateSchedulingForFrameSize": "NO",
+    "saveServerGraph": "NO",
+    "plcaModeling": "SINGLE_PLCA_SERVER_MODELING"
+  },
+  "flows": [
+    {
+      "flowName": "tt10",
+      "sizeBytes": 400.0,
+      "deadlineUs": 8908.0,
+      "type": "TT",
+      "priority": 4,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES1",
+      "destinationDevice": "ES5",
+      "path": [
+        {
+          "src": "ES1.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES5.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt1",
+      "sizeBytes": 400.0,
+      "deadlineUs": 58972.0,
+      "type": "TT",
+      "priority": 7,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES1",
+      "destinationDevice": "ES4",
+      "path": [
+        {
+          "src": "ES1.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES4.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt3",
+      "sizeBytes": 400.0,
+      "deadlineUs": 56935.0,
+      "type": "TT",
+      "priority": 1,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES3",
+      "destinationDevice": "ES6",
+      "path": [
+        {
+          "src": "ES3.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES6.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt2",
+      "sizeBytes": 400.0,
+      "deadlineUs": 114419.0,
+      "type": "TT",
+      "priority": 3,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES2",
+      "destinationDevice": "ES5",
+      "path": [
+        {
+          "src": "ES2.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES5.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt5",
+      "sizeBytes": 400.0,
+      "deadlineUs": 34481.0,
+      "type": "TT",
+      "priority": 1,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES2",
+      "destinationDevice": "ES3",
+      "path": [
+        {
+          "src": "ES2.0",
+          "dst": "ES3.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt13",
+      "sizeBytes": 400.0,
+      "deadlineUs": 8908.0,
+      "type": "TT",
+      "priority": 2,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES3",
+      "destinationDevice": "ES6",
+      "path": [
+        {
+          "src": "ES3.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES6.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt4",
+      "sizeBytes": 400.0,
+      "deadlineUs": 170198.0,
+      "type": "TT",
+      "priority": 6,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES1",
+      "destinationDevice": "ES2",
+      "path": [
+        {
+          "src": "ES1.0",
+          "dst": "ES2.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt7",
+      "sizeBytes": 400.0,
+      "deadlineUs": 352023.0,
+      "type": "TT",
+      "priority": 7,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES2",
+      "destinationDevice": "ES3",
+      "path": [
+        {
+          "src": "ES2.0",
+          "dst": "ES3.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt11",
+      "sizeBytes": 400.0,
+      "deadlineUs": 8908.0,
+      "type": "TT",
+      "priority": 2,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES2",
+      "destinationDevice": "ES6",
+      "path": [
+        {
+          "src": "ES2.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES6.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt6",
+      "sizeBytes": 400.0,
+      "deadlineUs": 11709.0,
+      "type": "TT",
+      "priority": 7,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES3",
+      "destinationDevice": "ES1",
+      "path": [
+        {
+          "src": "ES3.0",
+          "dst": "ES1.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt12",
+      "sizeBytes": 400.0,
+      "deadlineUs": 8908.0,
+      "type": "TT",
+      "priority": 2,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES1",
+      "destinationDevice": "ES2",
+      "path": [
+        {
+          "src": "ES1.0",
+          "dst": "ES2.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt9",
+      "sizeBytes": 400.0,
+      "deadlineUs": 35879.0,
+      "type": "TT",
+      "priority": 5,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES2",
+      "destinationDevice": "ES6",
+      "path": [
+        {
+          "src": "ES2.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES6.0"
+        }
+      ]
+    },
+    {
+      "flowName": "tt8",
+      "sizeBytes": 400.0,
+      "deadlineUs": 23165.0,
+      "type": "TT",
+      "priority": 6,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "sourceDevice": "ES3",
+      "destinationDevice": "ES5",
+      "path": [
+        {
+          "src": "ES3.0",
+          "dst": "SW1.0"
+        },
+        {
+          "src": "SW1.1",
+          "dst": "SW2.0"
+        },
+        {
+          "src": "SW2.1",
+          "dst": "ES5.0"
+        }
+      ]
+    }
+  ],
+  "devices": [
+    {
+      "deviceName": "ES1",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": [
+            {
+              "openTime": 100,
+              "closeTime": 120,
+              "periodLength": 250,
+              "priority": 2
+            },
+            {
+              "openTime": 80,
+              "closeTime": 100,
+              "periodLength": 250,
+              "priority": 4
+            },
+            {
+              "openTime": 60,
+              "closeTime": 80,
+              "periodLength": 250,
+              "priority": 6
+            },
+            {
+              "openTime": 40,
+              "closeTime": 60,
+              "periodLength": 250,
+              "priority": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "deviceName": "ES3",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": [
+            {
+              "openTime": 40,
+              "closeTime": 60,
+              "periodLength": 250,
+              "priority": 1
+            },
+            {
+              "openTime": 100,
+              "closeTime": 120,
+              "periodLength": 250,
+              "priority": 2
+            },
+            {
+              "openTime": 80,
+              "closeTime": 100,
+              "periodLength": 250,
+              "priority": 6
+            },
+            {
+              "openTime": 60,
+              "closeTime": 80,
+              "periodLength": 250,
+              "priority": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "deviceName": "ES2",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": [
+            {
+              "openTime": 55,
+              "closeTime": 75,
+              "periodLength": 250,
+              "priority": 1
+            },
+            {
+              "openTime": 105,
+              "closeTime": 125,
+              "periodLength": 250,
+              "priority": 2
+            },
+            {
+              "openTime": 40,
+              "closeTime": 60,
+              "periodLength": 250,
+              "priority": 3
+            },
+            {
+              "openTime": 85,
+              "closeTime": 105,
+              "periodLength": 250,
+              "priority": 5
+            },
+            {
+              "openTime": 70,
+              "closeTime": 90,
+              "periodLength": 250,
+              "priority": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "deviceName": "ES5",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": []
+        }
+      ]
+    },
+    {
+      "deviceName": "ES4",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": []
+        }
+      ]
+    },
+    {
+      "deviceName": "ES6",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": []
+        }
+      ]
+    },
+    {
+      "deviceName": "SW1",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": [
+            {
+              "openTime": 90,
+              "closeTime": 110,
+              "periodLength": 250,
+              "priority": 1
+            },
+            {
+              "openTime": 110,
+              "closeTime": 130,
+              "periodLength": 250,
+              "priority": 2
+            },
+            {
+              "openTime": 90,
+              "closeTime": 110,
+              "periodLength": 250,
+              "priority": 6
+            },
+            {
+              "openTime": 90,
+              "closeTime": 110,
+              "periodLength": 250,
+              "priority": 7
+            },
+            {
+              "openTime": 110,
+              "closeTime": 130,
+              "periodLength": 250,
+              "priority": 7
+            }
+          ]
+        },
+        {
+          "interfaceId": 1,
+          "phyStandard": "1000BASE-TX",
+          "plcaWeightWRR": 0,
+          "maxGclEntries": 0,
+          "schedule": [
+            {
+              "openTime": 100,
+              "closeTime": 120,
+              "periodLength": 250,
+              "priority": 1
+            },
+            {
+              "openTime": 165,
+              "closeTime": 185,
+              "periodLength": 250,
+              "priority": 2
+            },
+            {
+              "openTime": 85,
+              "closeTime": 105,
+              "periodLength": 250,
+              "priority": 3
+            },
+            {
+              "openTime": 145,
+              "closeTime": 165,
+              "periodLength": 250,
+              "priority": 4
+            },
+            {
+              "openTime": 130,
+              "closeTime": 150,
+              "periodLength": 250,
+              "priority": 5
+            },
+            {
+              "openTime": 115,
+              "closeTime": 135,
+              "periodLength": 250,
+              "priority": 6
+            },
+            {
+              "openTime": 70,
+              "closeTime": 90,
+              "periodLength": 250,
+              "priority": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "deviceName": "SW2",
+      "processingDelay": 0,
+      "interfaces": [
+        {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-TX",
+          "plcaWeightWRR": 0,
+          "maxGclEntries": 0,
+          "schedule": []
+        },
+        {
+          "interfaceId": 1,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "maxGclEntries": 0,
+          "schedule": [
+            {
+              "openTime": 140,
+              "closeTime": 160,
+              "periodLength": 250,
+              "priority": 1
+            },
+            {
+              "openTime": 190,
+              "closeTime": 210,
+              "periodLength": 250,
+              "priority": 2
+            },
+            {
+              "openTime": 120,
+              "closeTime": 140,
+              "periodLength": 250,
+              "priority": 3
+            },
+            {
+              "openTime": 200,
+              "closeTime": 220,
+              "periodLength": 250,
+              "priority": 4
+            },
+            {
+              "openTime": 170,
+              "closeTime": 190,
+              "periodLength": 250,
+              "priority": 5
+            },
+            {
+              "openTime": 160,
+              "closeTime": 180,
+              "periodLength": 250,
+              "priority": 6
+            },
+            {
+              "openTime": 100,
+              "closeTime": 120,
+              "periodLength": 250,
+              "priority": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "interfaces": [
+        "SW1.0",
+        "ES3.0",
+        "ES2.0",
+        "ES1.0"
+      ]
+    },
+    {
+      "interfaces": [
+        "SW2.1",
+        "ES6.0",
+        "ES5.0",
+        "ES4.0"
+      ]
+    },
+    {
+      "interfaces": [
+        "SW1.1",
+        "SW2.0"
+      ]
+    }
+  ]
+}
