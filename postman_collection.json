@@ -1,0 +1,169 @@
+{
+  "info": {
+    "name": "tsn-api",
+    "description": "Collection para testar os endpoints da API de análise de redes TSN",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Metrics",
+      "item": [
+        {
+          "name": "Health - Ready",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/q/health/ready",
+              "host": ["{{base_url}}"],
+              "path": ["q", "health", "ready"]
+            }
+          }
+        },
+        {
+          "name": "Health - Live",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/q/health/live",
+              "host": ["{{base_url}}"],
+              "path": ["q", "health", "live"]
+            }
+          }
+        },
+        {
+          "name": "Metrics (Prometheus)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/q/metrics",
+              "host": ["{{base_url}}"],
+              "path": ["q", "metrics"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Worker Management",
+      "item": [
+        {
+          "name": "Status - All Workers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/gateway/manage-worker/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "gateway", "manage-worker", "status"]
+            }
+          }
+        },
+        {
+          "name": "Status - Single Worker",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/v1/gateway/manage-worker/status/tsn-worker-1:8080",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "gateway", "manage-worker", "status", "tsn-worker-1:8080"]
+            }
+          }
+        },
+        {
+          "name": "Add Worker",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/api/v1/gateway/manage-worker/add",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "gateway", "manage-worker", "add"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"http://new-worker:8080\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Remove Worker",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/v1/gateway/manage-worker/remove",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "gateway", "manage-worker", "remove"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"http://new-worker:8080\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analysis",
+      "item": [
+        {
+          "name": "Analyze - Single Network",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/v1/gateway/analyze",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "gateway", "analyze"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"metadata\": {\n      \"networkCase\": \"1000BASE-T1S\",\n      \"description\": \"change overlapped situations\",\n      \"datasetCase\": \"1-1\"\n    },\n    \"executionConfig\": {\n      \"prioritizingOrder\": \"REVERSE__LOWER_VALUE_HIGHER_PRIORITY\",\n      \"plcaModeling\": \"SINGLE_PLCA_SERVER_MODELING\",\n      \"frameSizeSchedulingValidationOption\": \"YES_PRINT_IF_INVALID\",\n      \"multiplexing\": \"FIFO\",\n      \"analyses\": [\"TFA\", \"SFA\"]\n    },\n    \"devices\": {\n      \"ES1\": {\n        \"deviceName\": \"ES1\",\n        \"interfaces\": {\n          \"0\": {\n            \"interfaceId\": 0,\n            \"phyStandard\": \"1000BASE-T1S\",\n            \"plcaWeightWRR\": 1,\n            \"queues\": {\n              \"7\": {\n                \"priority\": 7,\n                \"tasScheduleEntries\": [{\"openTime\": 40, \"closeTime\": 60, \"periodLength\": 250, \"priority\": 7}]\n              }\n            }\n          }\n        }\n      },\n      \"ES2\": {\n        \"deviceName\": \"ES2\",\n        \"interfaces\": {\n          \"0\": {\n            \"interfaceId\": 0,\n            \"phyStandard\": \"1000BASE-T1S\",\n            \"plcaWeightWRR\": 1,\n            \"queues\": {}\n          }\n        }\n      }\n    },\n    \"flows\": {\n      \"tt1\": {\n        \"flowName\": \"tt1\",\n        \"sizeBytes\": 400.0,\n        \"deadlineUs\": 58972.0,\n        \"type\": \"TT\",\n        \"priority\": 7,\n        \"periodUs\": 250.0,\n        \"offsetUs\": 0.0,\n        \"virtualFullPath\": {\n          \"pathId\": \"vl1\",\n          \"linkHops\": [{\"source\": \"ES1.0\", \"destination\": \"ES2.0\"}]\n        }\n      }\n    },\n    \"links\": [[\"ES1.0\", \"ES2.0\"]],\n    \"virtualFullPaths\": {\n      \"vl1\": {\n        \"pathId\": \"vl1\",\n        \"linkHops\": [{\"source\": \"ES1.0\", \"destination\": \"ES2.0\"}]\n      }\n    }\n  }\n]"
+            }
+          }
+        },
+        {
+          "name": "Analyze - Full Dataset (use file)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/v1/gateway/analyze",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "gateway", "analyze"]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  <<COLE AQUI O CONTEUDO DO ARQUIVO src/main/resources/samples/dataset1-1.json>>\n]"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
