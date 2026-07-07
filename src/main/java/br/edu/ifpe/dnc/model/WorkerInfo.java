@@ -1,10 +1,16 @@
-package br.edu.ifpe.dnc.client;
+package br.edu.ifpe.dnc.model;
 
 import java.time.Instant;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class WorkerInfo {
+
+    public enum Status {
+        ONLINE,
+        OFFLINE,
+        UNKNOWN
+    }
 
     private final String id;
     private final String url;
@@ -100,11 +106,5 @@ public class WorkerInfo {
     public String toString() {
         return String.format("WorkerInfo{id='%s', status=%s, dynamic=%s, failures=%d, active=%d, lastCheck=%s}",
                 id, status.get(), dynamic, consecutiveFailures.get(), activeRequests.get(), lastHealthCheck.get());
-    }
-
-    public enum Status {
-        ONLINE,
-        OFFLINE,
-        UNKNOWN
     }
 }

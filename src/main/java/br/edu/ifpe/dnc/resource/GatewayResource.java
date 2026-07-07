@@ -1,9 +1,12 @@
 package br.edu.ifpe.dnc.resource;
 
-import br.edu.ifpe.dnc.client.WorkerLoadBalancer;
 import br.edu.ifpe.dnc.dto.AnalysisResultDTO;
 import br.edu.ifpe.dnc.dto.ApiResponseDTO;
 import br.edu.ifpe.dnc.dto.WorkerUrlDTO;
+import br.edu.ifpe.dnc.gateway.LoadBalancer;
+import br.edu.ifpe.dnc.gateway.PoolManager;
+import br.edu.ifpe.dnc.gateway.WorkerClient;
+import br.edu.ifpe.dnc.model.WorkerInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.quarkus.arc.profile.IfBuildProfile;
 import jakarta.inject.Inject;
@@ -30,14 +33,20 @@ public class GatewayResource {
     private static final Logger log = Logger.getLogger(GatewayResource.class);
 
     @Inject
-    WorkerLoadBalancer loadBalancer;
+    LoadBalancer loadBalancer;
+
+    @Inject
+    WorkerClient workerClient;
+
+    @Inject
+    PoolManager poolManager;
 
     @POST
     @Path("/analyze")
     public Response analyze(List<JsonNode> networkJsonList) {
         log.infof("Gateway received %d network(s) for analysis", networkJsonList.size());
 
-        if (!loadBalancer.hasOnlineWorkers()) {
+        if (!poolManager.hasOnlineWorkers()) {
             return Response.status(Response.Status.SERVICE_UNAVAILABLE)
                     .entity(ApiResponseDTO.error("No online workers available"))
                     .build();
@@ -46,11 +55,18 @@ public class GatewayResource {
         long startTotal = System.nanoTime();
 
         List<AnalysisResultDTO> results = networkJsonList.parallelStream()
-                .flatMap(json -> loadBalancer.send(json).stream())
+                .flatMap(json -> {
+                    WorkerInfo worker = loadBalancer.selectWorker();
+                    if (worker == null) {
+                        AnalysisResultDTO error = new AnalysisResultDTO();
+                        error.setError("No online workers available");
+                        return List.of(error).stream();
+                    }
+                    return workerClient.sendAnalysis(worker, json).stream();
+                })
                 .toList();
 
         long elapsedMs = (System.nanoTime() - startTotal) / 1_000_000;
-
         log.infof("Gateway analysis completed: %d network(s), %d result(s), total time: %d ms",
                 networkJsonList.size(), results.size(), elapsedMs);
 
@@ -60,31 +76,31 @@ public class GatewayResource {
     @PUT
     @Path("/manage-worker/add")
     public Response addWorker(WorkerUrlDTO body) {
-        loadBalancer.addWorker(body.getUrl());
+        poolManager.register(body.getUrl());
         return Response.ok(ApiResponseDTO.success("Worker added: " + body.getUrl())).build();
     }
 
     @GET
     @Path("/manage-worker/status")
-    public List<String> getWorkerUrls() {
-        return loadBalancer.getWorkerAllStatuses();
+    public List<String> getWorkerStatuses() {
+        return poolManager.getAllStatuses();
     }
 
     @GET
     @Path("/manage-worker/status/{id}")
-    public List<String> getWorkerUrls(@PathParam("id") String id) {
-        return loadBalancer.getWorkerStatus(id);
+    public List<String> getWorkerStatus(@PathParam("id") String id) {
+        return poolManager.getStatus(id);
     }
 
     @DELETE
     @Path("/manage-worker/remove")
     public Response removeWorker(WorkerUrlDTO body) {
-        boolean removed = loadBalancer.removeWorker(body.getUrl());
+        boolean removed = poolManager.unregister(body.getUrl());
 
         if (removed) {
             return Response.ok(ApiResponseDTO.success("Worker removed: " + body.getUrl())).build();
         }
-        
+
         return Response.status(Response.Status.NOT_FOUND)
                 .entity(ApiResponseDTO.error("Worker not found: " + body.getUrl()))
                 .build();

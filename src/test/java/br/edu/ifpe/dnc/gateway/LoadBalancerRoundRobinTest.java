@@ -1,4 +1,4 @@
-package br.edu.ifpe.dnc.client;
+package br.edu.ifpe.dnc.gateway;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WorkerLoadBalancerRoundRobinTest {
+class LoadBalancerRoundRobinTest {
 
     @Test
     void shouldDistributeAcrossWorkersInRoundRobin() {
