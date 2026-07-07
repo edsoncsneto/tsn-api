@@ -1,6 +1,5 @@
 package br.edu.ifpe.dnc.resource;
 
-import br.edu.ifpe.dnc.dto.AnalysisResultDTO;
 import br.edu.ifpe.dnc.dto.ApiResponseDTO;
 import br.edu.ifpe.dnc.dto.WorkerUrlDTO;
 import br.edu.ifpe.dnc.gateway.LoadBalancer;
@@ -8,6 +7,7 @@ import br.edu.ifpe.dnc.gateway.PoolManager;
 import br.edu.ifpe.dnc.gateway.WorkerClient;
 import br.edu.ifpe.dnc.model.WorkerInfo;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.quarkus.arc.profile.IfBuildProfile;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -41,6 +41,9 @@ public class GatewayResource {
     @Inject
     PoolManager poolManager;
 
+    @Inject
+    ObjectMapper objectMapper;
+
     @POST
     @Path("/analyze")
     public Response analyze(List<JsonNode> networkJsonList) {
@@ -54,23 +57,26 @@ public class GatewayResource {
 
         long startTotal = System.nanoTime();
 
-        List<AnalysisResultDTO> results = networkJsonList.parallelStream()
-                .flatMap(json -> {
+        List<String> results = networkJsonList.parallelStream()
+                .map(json -> {
                     WorkerInfo worker = loadBalancer.selectWorker();
                     if (worker == null) {
-                        AnalysisResultDTO error = new AnalysisResultDTO();
-                        error.setError("No online workers available");
-                        return List.of(error).stream();
+                        return "{\"error\": \"No online workers available\"}";
                     }
-                    return workerClient.sendAnalysis(worker, json).stream();
+                    try {
+                        String jsonString = objectMapper.writeValueAsString(json);
+                        return workerClient.sendAnalysis(worker, jsonString);
+                    } catch (Exception e) {
+                        return "{\"error\": \"" + e.getMessage() + "\"}";
+                    }
                 })
                 .toList();
 
         long elapsedMs = (System.nanoTime() - startTotal) / 1_000_000;
-        log.infof("Gateway analysis completed: %d network(s), %d result(s), total time: %d ms",
-                networkJsonList.size(), results.size(), elapsedMs);
+        log.infof("Gateway analysis completed: %d network(s), total time: %d ms",
+                networkJsonList.size(), elapsedMs);
 
-        return Response.ok(results).build();
+        return Response.ok("[" + String.join(",", results) + "]").build();
     }
 
     @PUT

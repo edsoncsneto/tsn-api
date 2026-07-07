@@ -1,217 +1,474 @@
 {
-  "networkCase": "1000BASE-TX",
-  "datasetName": "1-1",
-  "description": "change overlapped situations",
+  "metadata": {
+    "networkCase": "1000BASE-T1S",
+    "description": "change overlapped situations",
+    "datasetCase": "1-1"
+  },
   "executionConfig": {
-    "generateTASWindowsExcelSheet": "ALL",
-    "generateTASWindowsCharts": "NO",
-    "generateNCCurvesCharts": "NO",
-    "generatePortGuaranteedWinFiles": "NO",
     "prioritizingOrder": "REVERSE__LOWER_VALUE_HIGHER_PRIORITY",
+    "plcaModeling": "SINGLE_PLCA_SERVER_MODELING",
+    "frameSizeSchedulingValidationOption": "YES_PRINT_IF_INVALID",
     "multiplexing": "FIFO",
-    "validateSchedulingForFrameSize": "YES_PRINT_IF_INVALID",
-    "saveServerGraph": "NO",
-    "plcaModeling": "INTEGRATED_PLCA_SERVER_MODELING",
     "analyses": [
       "TFA",
       "SFA"
     ]
   },
-  "flows": [
-    {
-      "flowName": "tt1",
-      "sizeBytes": 400.0,
-      "deadlineUs": 58972.0,
-      "type": "TT",
-      "priority": 7,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES1",
-      "destinationDevice": "ES4",
-      "path": [
-        {
-          "src": "ES1.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES4.0"
+  "devices": {
+    "ES1": {
+      "deviceName": "ES1",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {
+            "2": {
+              "priority": 2,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 100,
+                  "closeTime": 120,
+                  "periodLength": 250,
+                  "priority": 2
+                }
+              ]
+            },
+            "4": {
+              "priority": 4,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 80,
+                  "closeTime": 100,
+                  "periodLength": 250,
+                  "priority": 4
+                }
+              ]
+            },
+            "6": {
+              "priority": 6,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 60,
+                  "closeTime": 80,
+                  "periodLength": 250,
+                  "priority": 6
+                }
+              ]
+            },
+            "7": {
+              "priority": 7,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 40,
+                  "closeTime": 60,
+                  "periodLength": 250,
+                  "priority": 7
+                }
+              ]
+            }
+          }
         }
-      ]
+      }
     },
-    {
-      "flowName": "tt2",
-      "sizeBytes": 400.0,
-      "deadlineUs": 114419.0,
-      "type": "TT",
-      "priority": 3,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES2",
-      "destinationDevice": "ES5",
-      "path": [
-        {
-          "src": "ES2.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES5.0"
+    "ES3": {
+      "deviceName": "ES3",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {
+            "1": {
+              "priority": 1,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 40,
+                  "closeTime": 60,
+                  "periodLength": 250,
+                  "priority": 1
+                }
+              ]
+            },
+            "2": {
+              "priority": 2,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 100,
+                  "closeTime": 120,
+                  "periodLength": 250,
+                  "priority": 2
+                }
+              ]
+            },
+            "6": {
+              "priority": 6,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 80,
+                  "closeTime": 100,
+                  "periodLength": 250,
+                  "priority": 6
+                }
+              ]
+            },
+            "7": {
+              "priority": 7,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 60,
+                  "closeTime": 80,
+                  "periodLength": 250,
+                  "priority": 7
+                }
+              ]
+            }
+          }
         }
-      ]
+      }
     },
-    {
-      "flowName": "tt3",
-      "sizeBytes": 400.0,
-      "deadlineUs": 56935.0,
-      "type": "TT",
-      "priority": 1,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES3",
-      "destinationDevice": "ES6",
-      "path": [
-        {
-          "src": "ES3.0",
-          "dst": "SW1.0"
+    "ES2": {
+      "deviceName": "ES2",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {
+            "1": {
+              "priority": 1,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 55,
+                  "closeTime": 75,
+                  "periodLength": 250,
+                  "priority": 1
+                }
+              ]
+            },
+            "2": {
+              "priority": 2,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 105,
+                  "closeTime": 125,
+                  "periodLength": 250,
+                  "priority": 2
+                }
+              ]
+            },
+            "3": {
+              "priority": 3,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 40,
+                  "closeTime": 60,
+                  "periodLength": 250,
+                  "priority": 3
+                }
+              ]
+            },
+            "5": {
+              "priority": 5,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 85,
+                  "closeTime": 105,
+                  "periodLength": 250,
+                  "priority": 5
+                }
+              ]
+            },
+            "7": {
+              "priority": 7,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 70,
+                  "closeTime": 90,
+                  "periodLength": 250,
+                  "priority": 7
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ES5": {
+      "deviceName": "ES5",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {}
+        }
+      }
+    },
+    "ES4": {
+      "deviceName": "ES4",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {}
+        }
+      }
+    },
+    "ES6": {
+      "deviceName": "ES6",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {}
+        }
+      }
+    },
+    "SW1": {
+      "deviceName": "SW1",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {
+            "1": {
+              "priority": 1,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 90,
+                  "closeTime": 110,
+                  "periodLength": 250,
+                  "priority": 1
+                }
+              ]
+            },
+            "2": {
+              "priority": 2,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 110,
+                  "closeTime": 130,
+                  "periodLength": 250,
+                  "priority": 2
+                }
+              ]
+            },
+            "6": {
+              "priority": 6,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 90,
+                  "closeTime": 110,
+                  "periodLength": 250,
+                  "priority": 6
+                }
+              ]
+            },
+            "7": {
+              "priority": 7,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 90,
+                  "closeTime": 110,
+                  "periodLength": 250,
+                  "priority": 7
+                },
+                {
+                  "openTime": 110,
+                  "closeTime": 130,
+                  "periodLength": 250,
+                  "priority": 7
+                }
+              ]
+            }
+          }
         },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
+        "1": {
+          "interfaceId": 1,
+          "phyStandard": "1000BASE-TX",
+          "queues": {
+            "1": {
+              "priority": 1,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 100,
+                  "closeTime": 120,
+                  "periodLength": 250,
+                  "priority": 1
+                }
+              ]
+            },
+            "2": {
+              "priority": 2,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 165,
+                  "closeTime": 185,
+                  "periodLength": 250,
+                  "priority": 2
+                }
+              ]
+            },
+            "3": {
+              "priority": 3,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 85,
+                  "closeTime": 105,
+                  "periodLength": 250,
+                  "priority": 3
+                }
+              ]
+            },
+            "4": {
+              "priority": 4,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 145,
+                  "closeTime": 165,
+                  "periodLength": 250,
+                  "priority": 4
+                }
+              ]
+            },
+            "5": {
+              "priority": 5,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 130,
+                  "closeTime": 150,
+                  "periodLength": 250,
+                  "priority": 5
+                }
+              ]
+            },
+            "6": {
+              "priority": 6,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 115,
+                  "closeTime": 135,
+                  "periodLength": 250,
+                  "priority": 6
+                }
+              ]
+            },
+            "7": {
+              "priority": 7,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 70,
+                  "closeTime": 90,
+                  "periodLength": 250,
+                  "priority": 7
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SW2": {
+      "deviceName": "SW2",
+      "interfaces": {
+        "0": {
+          "interfaceId": 0,
+          "phyStandard": "1000BASE-TX",
+          "queues": {}
         },
-        {
-          "src": "SW2.1",
-          "dst": "ES6.0"
+        "1": {
+          "interfaceId": 1,
+          "phyStandard": "1000BASE-T1S",
+          "plcaWeightWRR": 1,
+          "queues": {
+            "1": {
+              "priority": 1,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 140,
+                  "closeTime": 160,
+                  "periodLength": 250,
+                  "priority": 1
+                }
+              ]
+            },
+            "2": {
+              "priority": 2,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 190,
+                  "closeTime": 210,
+                  "periodLength": 250,
+                  "priority": 2
+                }
+              ]
+            },
+            "3": {
+              "priority": 3,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 120,
+                  "closeTime": 140,
+                  "periodLength": 250,
+                  "priority": 3
+                }
+              ]
+            },
+            "4": {
+              "priority": 4,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 200,
+                  "closeTime": 220,
+                  "periodLength": 250,
+                  "priority": 4
+                }
+              ]
+            },
+            "5": {
+              "priority": 5,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 170,
+                  "closeTime": 190,
+                  "periodLength": 250,
+                  "priority": 5
+                }
+              ]
+            },
+            "6": {
+              "priority": 6,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 160,
+                  "closeTime": 180,
+                  "periodLength": 250,
+                  "priority": 6
+                }
+              ]
+            },
+            "7": {
+              "priority": 7,
+              "tasScheduleEntries": [
+                {
+                  "openTime": 100,
+                  "closeTime": 120,
+                  "periodLength": 250,
+                  "priority": 7
+                }
+              ]
+            }
+          }
         }
-      ]
-    },
-    {
-      "flowName": "tt4",
-      "sizeBytes": 400.0,
-      "deadlineUs": 170198.0,
-      "type": "TT",
-      "priority": 6,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES1",
-      "destinationDevice": "ES2",
-      "path": [
-        {
-          "src": "ES1.0",
-          "dst": "ES2.0"
-        }
-      ]
-    },
-    {
-      "flowName": "tt5",
-      "sizeBytes": 400.0,
-      "deadlineUs": 34481.0,
-      "type": "TT",
-      "priority": 1,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES2",
-      "destinationDevice": "ES3",
-      "path": [
-        {
-          "src": "ES2.0",
-          "dst": "ES3.0"
-        }
-      ]
-    },
-    {
-      "flowName": "tt6",
-      "sizeBytes": 400.0,
-      "deadlineUs": 11709.0,
-      "type": "TT",
-      "priority": 7,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES3",
-      "destinationDevice": "ES1",
-      "path": [
-        {
-          "src": "ES3.0",
-          "dst": "ES1.0"
-        }
-      ]
-    },
-    {
-      "flowName": "tt7",
-      "sizeBytes": 400.0,
-      "deadlineUs": 352023.0,
-      "type": "TT",
-      "priority": 7,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES2",
-      "destinationDevice": "ES3",
-      "path": [
-        {
-          "src": "ES2.0",
-          "dst": "ES3.0"
-        }
-      ]
-    },
-    {
-      "flowName": "tt8",
-      "sizeBytes": 400.0,
-      "deadlineUs": 23165.0,
-      "type": "TT",
-      "priority": 6,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES3",
-      "destinationDevice": "ES5",
-      "path": [
-        {
-          "src": "ES3.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES5.0"
-        }
-      ]
-    },
-    {
-      "flowName": "tt9",
-      "sizeBytes": 400.0,
-      "deadlineUs": 35879.0,
-      "type": "TT",
-      "priority": 5,
-      "periodUs": 250.0,
-      "offsetUs": 0.0,
-      "sourceDevice": "ES2",
-      "destinationDevice": "ES6",
-      "path": [
-        {
-          "src": "ES2.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES6.0"
-        }
-      ]
-    },
-    {
+      }
+    }
+  },
+  "flows": {
+    "tt10": {
       "flowName": "tt10",
       "sizeBytes": 400.0,
       "deadlineUs": 8908.0,
@@ -219,41 +476,121 @@
       "priority": 4,
       "periodUs": 250.0,
       "offsetUs": 0.0,
-      "sourceDevice": "ES1",
-      "destinationDevice": "ES5",
-      "path": [
-        {
-          "src": "ES1.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES5.0"
-        }
-      ]
+      "virtualFullPath": {
+        "pathId": "vl10",
+        "linkHops": [
+          {
+            "source": "ES1.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES5.0"
+          }
+        ]
+      }
     },
-    {
-      "flowName": "tt12",
+    "tt1": {
+      "flowName": "tt1",
       "sizeBytes": 400.0,
-      "deadlineUs": 8908.0,
+      "deadlineUs": 58972.0,
       "type": "TT",
-      "priority": 2,
+      "priority": 7,
       "periodUs": 250.0,
       "offsetUs": 0.0,
-      "sourceDevice": "ES1",
-      "destinationDevice": "ES2",
-      "path": [
-        {
-          "src": "ES1.0",
-          "dst": "ES2.0"
-        }
-      ]
+      "virtualFullPath": {
+        "pathId": "vl1",
+        "linkHops": [
+          {
+            "source": "ES1.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES4.0"
+          }
+        ]
+      }
     },
-    {
+    "tt3": {
+      "flowName": "tt3",
+      "sizeBytes": 400.0,
+      "deadlineUs": 56935.0,
+      "type": "TT",
+      "priority": 1,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl3",
+        "linkHops": [
+          {
+            "source": "ES3.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES6.0"
+          }
+        ]
+      }
+    },
+    "tt2": {
+      "flowName": "tt2",
+      "sizeBytes": 400.0,
+      "deadlineUs": 114419.0,
+      "type": "TT",
+      "priority": 3,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl2",
+        "linkHops": [
+          {
+            "source": "ES2.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES5.0"
+          }
+        ]
+      }
+    },
+    "tt5": {
+      "flowName": "tt5",
+      "sizeBytes": 400.0,
+      "deadlineUs": 34481.0,
+      "type": "TT",
+      "priority": 1,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl5",
+        "linkHops": [
+          {
+            "source": "ES2.0",
+            "destination": "ES3.0"
+          }
+        ]
+      }
+    },
+    "tt13": {
       "flowName": "tt13",
       "sizeBytes": 400.0,
       "deadlineUs": 8908.0,
@@ -261,24 +598,61 @@
       "priority": 2,
       "periodUs": 250.0,
       "offsetUs": 0.0,
-      "sourceDevice": "ES3",
-      "destinationDevice": "ES6",
-      "path": [
-        {
-          "src": "ES3.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES6.0"
-        }
-      ]
+      "virtualFullPath": {
+        "pathId": "vl3",
+        "linkHops": [
+          {
+            "source": "ES3.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES6.0"
+          }
+        ]
+      }
     },
-    {
+    "tt4": {
+      "flowName": "tt4",
+      "sizeBytes": 400.0,
+      "deadlineUs": 170198.0,
+      "type": "TT",
+      "priority": 6,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl4",
+        "linkHops": [
+          {
+            "source": "ES1.0",
+            "destination": "ES2.0"
+          }
+        ]
+      }
+    },
+    "tt7": {
+      "flowName": "tt7",
+      "sizeBytes": 400.0,
+      "deadlineUs": 352023.0,
+      "type": "TT",
+      "priority": 7,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl5",
+        "linkHops": [
+          {
+            "source": "ES2.0",
+            "destination": "ES3.0"
+          }
+        ]
+      }
+    },
+    "tt11": {
       "flowName": "tt11",
       "sizeBytes": 400.0,
       "deadlineUs": 8908.0,
@@ -286,364 +660,260 @@
       "priority": 2,
       "periodUs": 250.0,
       "offsetUs": 0.0,
-      "sourceDevice": "ES2",
-      "destinationDevice": "ES6",
-      "path": [
-        {
-          "src": "ES2.0",
-          "dst": "SW1.0"
-        },
-        {
-          "src": "SW1.1",
-          "dst": "SW2.0"
-        },
-        {
-          "src": "SW2.1",
-          "dst": "ES6.0"
-        }
-      ]
-    }
-  ],
-  "devices": [
-    {
-      "deviceName": "ES1",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-            "interfaceId": 0,
-            "phyStandard": "1000BASE-T1S",
-            "plcaWeightWRR": 1,
-            "maxGclEntries": 1024,
-            "schedule": [
-              {
-                "openTime": 40,
-                "closeTime": 60,
-                "periodLength": 250,
-                "priority": 7
-              },
-              {
-                "openTime": 60,
-                "closeTime": 80,
-                "periodLength": 250,
-                "priority": 6
-              },
-              {
-                "openTime": 80,
-                "closeTime": 100,
-                "periodLength": 250,
-                "priority": 4
-              },
-              {
-                "openTime": 100,
-                "closeTime": 120,
-                "periodLength": 250,
-                "priority": 2
-              }
-            ]
+      "virtualFullPath": {
+        "pathId": "vl9",
+        "linkHops": [
+          {
+            "source": "ES2.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES6.0"
           }
-      ]
+        ]
+      }
     },
-    {
-      "deviceName": "ES3",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": [
-            {
-              "openTime": 60,
-              "closeTime": 80,
-              "periodLength": 250,
-              "priority": 7
-            },
-            {
-              "openTime": 80,
-              "closeTime": 100,
-              "periodLength": 250,
-              "priority": 6
-            },
-            {
-              "openTime": 100,
-              "closeTime": 120,
-              "periodLength": 250,
-              "priority": 2
-            },
-            {
-              "openTime": 40,
-              "closeTime": 60,
-              "periodLength": 250,
-              "priority": 1
-            }
-          ]
-        }
-      ]
+    "tt6": {
+      "flowName": "tt6",
+      "sizeBytes": 400.0,
+      "deadlineUs": 11709.0,
+      "type": "TT",
+      "priority": 7,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl6",
+        "linkHops": [
+          {
+            "source": "ES3.0",
+            "destination": "ES1.0"
+          }
+        ]
+      }
     },
-    {
-      "deviceName": "ES2",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": [
-            {
-              "openTime": 70,
-              "closeTime": 90,
-              "periodLength": 250,
-              "priority": 7
-            },
-            {
-              "openTime": 85,
-              "closeTime": 105,
-              "periodLength": 250,
-              "priority": 5
-            },
-            {
-              "openTime": 40,
-              "closeTime": 60,
-              "periodLength": 250,
-              "priority": 3
-            },
-            {
-              "openTime": 105,
-              "closeTime": 125,
-              "periodLength": 250,
-              "priority": 2
-            },
-            {
-              "openTime": 55,
-              "closeTime": 75,
-              "periodLength": 250,
-              "priority": 1
-            }
-          ]
-        }
-      ]
+    "tt12": {
+      "flowName": "tt12",
+      "sizeBytes": 400.0,
+      "deadlineUs": 8908.0,
+      "type": "TT",
+      "priority": 2,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl4",
+        "linkHops": [
+          {
+            "source": "ES1.0",
+            "destination": "ES2.0"
+          }
+        ]
+      }
     },
-    {
-      "deviceName": "ES4",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": []
-        }
-      ]
+    "tt9": {
+      "flowName": "tt9",
+      "sizeBytes": 400.0,
+      "deadlineUs": 35879.0,
+      "type": "TT",
+      "priority": 5,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl9",
+        "linkHops": [
+          {
+            "source": "ES2.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES6.0"
+          }
+        ]
+      }
     },
-    {
-      "deviceName": "ES5",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": []
-        }
-      ]
-    },
-    {
-      "deviceName": "ES6",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": []
-        }
-      ]
-    },
-    {
-      "deviceName": "SW1",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": [
-            {
-              "openTime": 90,
-              "closeTime": 110,
-              "periodLength": 250,
-              "priority": 7
-            },
-            {
-              "openTime": 110,
-              "closeTime": 130,
-              "periodLength": 250,
-              "priority": 7
-            },
-            {
-              "openTime": 90,
-              "closeTime": 110,
-              "periodLength": 250,
-              "priority": 1
-            },
-            {
-              "openTime": 90,
-              "closeTime": 110,
-              "periodLength": 250,
-              "priority": 6
-            },
-            {
-              "openTime": 110,
-              "closeTime": 130,
-              "periodLength": 250,
-              "priority": 2
-            }
-          ]
-        },
-        {
-          "interfaceId": 1,
-          "phyStandard": "1000BASE-TX",
-          "plcaWeightWRR": 0,
-          "maxGclEntries": 1024,
-          "schedule": [
-            {
-              "openTime": 70,
-              "closeTime": 90,
-              "periodLength": 250,
-              "priority": 7
-            },
-            {
-              "openTime": 115,
-              "closeTime": 135,
-              "periodLength": 250,
-              "priority": 6
-            },
-            {
-              "openTime": 130,
-              "closeTime": 150,
-              "periodLength": 250,
-              "priority": 5
-            },
-            {
-              "openTime": 145,
-              "closeTime": 165,
-              "periodLength": 250,
-              "priority": 4
-            },
-            {
-              "openTime": 85,
-              "closeTime": 105,
-              "periodLength": 250,
-              "priority": 3
-            },
-            {
-              "openTime": 165,
-              "closeTime": 185,
-              "periodLength": 250,
-              "priority": 2
-            },
-            {
-              "openTime": 100,
-              "closeTime": 120,
-              "periodLength": 250,
-              "priority": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "deviceName": "SW2",
-      "processingDelay": 0,
-      "interfaces": [
-        {
-          "interfaceId": 0,
-          "phyStandard": "1000BASE-TX",
-          "plcaWeightWRR": 0,
-          "maxGclEntries": 1024,
-          "schedule": []
-        },
-        {
-          "interfaceId": 1,
-          "phyStandard": "1000BASE-T1S",
-          "plcaWeightWRR": 1,
-          "maxGclEntries": 1024,
-          "schedule": [
-            {
-              "openTime": 100,
-              "closeTime": 120,
-              "periodLength": 250,
-              "priority": 7
-            },
-            {
-              "openTime": 160,
-              "closeTime": 180,
-              "periodLength": 250,
-              "priority": 6
-            },
-            {
-              "openTime": 200,
-              "closeTime": 220,
-              "periodLength": 250,
-              "priority": 4
-            },
-            {
-              "openTime": 120,
-              "closeTime": 140,
-              "periodLength": 250,
-              "priority": 3
-            },
-            {
-              "openTime": 170,
-              "closeTime": 190,
-              "periodLength": 250,
-              "priority": 5
-            },
-            {
-              "openTime": 190,
-              "closeTime": 210,
-              "periodLength": 250,
-              "priority": 2
-            },
-            {
-              "openTime": 140,
-              "closeTime": 160,
-              "periodLength": 250,
-              "priority": 1
-            }
-          ]
-        }
-      ]
+    "tt8": {
+      "flowName": "tt8",
+      "sizeBytes": 400.0,
+      "deadlineUs": 23165.0,
+      "type": "TT",
+      "priority": 6,
+      "periodUs": 250.0,
+      "offsetUs": 0.0,
+      "virtualFullPath": {
+        "pathId": "vl8",
+        "linkHops": [
+          {
+            "source": "ES3.0",
+            "destination": "SW1.0"
+          },
+          {
+            "source": "SW1.1",
+            "destination": "SW2.0"
+          },
+          {
+            "source": "SW2.1",
+            "destination": "ES5.0"
+          }
+        ]
+      }
     }
-  ],
+  },
   "links": [
-    {
-      "interfaces": [
-        "ES1.0",
-        "ES2.0",
-        "ES3.0",
-        "SW1.0"
+    [
+      "SW1.0",
+      "ES3.0",
+      "ES2.0",
+      "ES1.0"
+    ],
+    [
+      "SW1.1",
+      "SW2.0"
+    ],
+    [
+      "SW2.1",
+      "ES6.0",
+      "ES5.0",
+      "ES4.0"
+    ]
+  ],
+  "virtualFullPaths": {
+    "vl6": {
+      "pathId": "vl6",
+      "linkHops": [
+        {
+          "source": "ES3.0",
+          "destination": "ES1.0"
+        }
       ]
     },
-    {
-      "interfaces": [
-        "ES4.0",
-        "ES5.0",
-        "ES6.0",
-        "SW2.1"
+    "vl9": {
+      "pathId": "vl9",
+      "linkHops": [
+        {
+          "source": "ES2.0",
+          "destination": "SW1.0"
+        },
+        {
+          "source": "SW1.1",
+          "destination": "SW2.0"
+        },
+        {
+          "source": "SW2.1",
+          "destination": "ES6.0"
+        }
       ]
     },
-    {
-      "interfaces": [
-        "SW1.1",
-        "SW2.0"
+    "vl10": {
+      "pathId": "vl10",
+      "linkHops": [
+        {
+          "source": "ES1.0",
+          "destination": "SW1.0"
+        },
+        {
+          "source": "SW1.1",
+          "destination": "SW2.0"
+        },
+        {
+          "source": "SW2.1",
+          "destination": "ES5.0"
+        }
+      ]
+    },
+    "vl8": {
+      "pathId": "vl8",
+      "linkHops": [
+        {
+          "source": "ES3.0",
+          "destination": "SW1.0"
+        },
+        {
+          "source": "SW1.1",
+          "destination": "SW2.0"
+        },
+        {
+          "source": "SW2.1",
+          "destination": "ES5.0"
+        }
+      ]
+    },
+    "vl1": {
+      "pathId": "vl1",
+      "linkHops": [
+        {
+          "source": "ES1.0",
+          "destination": "SW1.0"
+        },
+        {
+          "source": "SW1.1",
+          "destination": "SW2.0"
+        },
+        {
+          "source": "SW2.1",
+          "destination": "ES4.0"
+        }
+      ]
+    },
+    "vl3": {
+      "pathId": "vl3",
+      "linkHops": [
+        {
+          "source": "ES3.0",
+          "destination": "SW1.0"
+        },
+        {
+          "source": "SW1.1",
+          "destination": "SW2.0"
+        },
+        {
+          "source": "SW2.1",
+          "destination": "ES6.0"
+        }
+      ]
+    },
+    "vl2": {
+      "pathId": "vl2",
+      "linkHops": [
+        {
+          "source": "ES2.0",
+          "destination": "SW1.0"
+        },
+        {
+          "source": "SW1.1",
+          "destination": "SW2.0"
+        },
+        {
+          "source": "SW2.1",
+          "destination": "ES5.0"
+        }
+      ]
+    },
+    "vl5": {
+      "pathId": "vl5",
+      "linkHops": [
+        {
+          "source": "ES2.0",
+          "destination": "ES3.0"
+        }
+      ]
+    },
+    "vl4": {
+      "pathId": "vl4",
+      "linkHops": [
+        {
+          "source": "ES1.0",
+          "destination": "ES2.0"
+        }
       ]
     }
-  ]
+  }
 }

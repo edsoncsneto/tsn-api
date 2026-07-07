@@ -2,6 +2,7 @@ package br.edu.ifpe.dnc.gateway;
 
 import br.edu.ifpe.dnc.model.WorkerInfo;
 import io.quarkus.arc.profile.IfBuildProfile;
+import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -12,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Startup
 @IfBuildProfile("gateway")
 @ApplicationScoped
 public class HealthCheckScheduler {
